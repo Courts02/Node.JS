@@ -52,7 +52,7 @@ app.get("/veg/:vegetable", (req, res) => {
 */
 app.post("/", (req, res) => {
     console.log(req.body);  // Parsed body (from JSON or form)
-    console.log(req.query); // Any query parameters (like ?name=Courtney)
+    console.log(req.query); // Any query parameters (like ?name=value)
     res.send("POST Successful!");
 });
 

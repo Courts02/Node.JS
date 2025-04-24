@@ -1,3 +1,6 @@
+// mvc = views, models & classes
+// models communicate with views
+
 // Import the homeController module where your route logic lives
 const homeController = require("./controllers/homeController");
 
@@ -42,7 +45,7 @@ app.use(express.json());
 // });
 
 /*
-  ROUTE: GET /veg/:vegetable
+  ROUTE: GET /item/vegtable
   Uses the `sendReqParam` function from homeController
   This will handle dynamic vegetable names like /items/carrot
 */
