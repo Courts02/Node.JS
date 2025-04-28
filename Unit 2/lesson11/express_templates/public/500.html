@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>500 - Internal Server Error</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: black;
+      color: #FF004C;
+      font-family: 'Press Start 2P', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      animation: glitch 1s infinite;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 40px;
+    }
+
+    a {
+      color: #FF004C;
+      text-decoration: none;
+      border: 2px solid #FF004C;
+      padding: 10px 20px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #FF004C;
+      color: black;
+    }
+
+    @keyframes glitch {
+      0% {
+        text-shadow: 2px 0 red, -2px 0 cyan;
+      }
+      20% {
+        text-shadow: -2px 0 red, 2px 0 cyan;
+      }
+      40% {
+        text-shadow: 2px 2px red, -2px -2px cyan;
+      }
+      60% {
+        text-shadow: -2px 2px red, 2px -2px cyan;
+      }
+      80% {
+        text-shadow: 0 0 red, 0 0 cyan;
+      }
+      100% {
+        text-shadow: 2px 0 red, -2px 0 cyan;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>500 - SYSTEM FAILURE</h1>
+  <p>The server has panicked and spilled coffee on itself.</p>
+</body>
+</html>
