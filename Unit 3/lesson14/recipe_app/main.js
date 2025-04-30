@@ -57,6 +57,7 @@ app.use(homeController.logRequestPaths);
 
 app.get("/name", homeController.respondWithName);
 app.get("/items/:vegetable", homeController.sendReqParam);
+app.get("/create-recipe", homeController.createRecipe);
 
 app.post("/", (req, res) => {
   console.log(req.body);

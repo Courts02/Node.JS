@@ -18,6 +18,19 @@ MongoDB.connect(dbURL, (error, client) => {
   let db = client.db(dbName); // Get a reference to the database
 
   // Insert a document into the "contacts" collection
+
+  db.collection("contacts")
+  .insert(
+    {
+      name: "Courtney Cook",
+      email: "courtneymdewing@outlook.com",
+    },
+    (error, db) => {
+      if (error) throw error; // If insertion fails, throw an error
+      console.log(db); // Log the result of the insertion
+    }
+  );
+
   db.collection("contacts")
     .insert(
       {
