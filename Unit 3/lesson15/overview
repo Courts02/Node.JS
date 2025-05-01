@@ -1,0 +1,42 @@
+<!-- Lesson 15 Overview: Connecting Controllers and Models -->
+
+<!-- Creating a Controller for Subscribers: -->
+
+Controllers connect your model (data) to your view (web page).
+
+A new file subscribersController.js is created to handle subscriber-related logic.
+
+This controller uses mongoose and the Subscriber model to fetch all subscribers with Subscriber.find({}).
+
+The resulting data is added to the request (req.data) and passed to the next middleware.
+
+Setting Up Routes:
+
+In main.js, set up a route /subscribers to call getAllSubscribers from the controller.
+
+This data is sent to the browser or rendered in a view called subscribers.ejs.
+
+<!-- Displaying Subscribers: -->
+
+In subscribers.ejs, loop through the subscribers array and show each subscriber’s name and email.
+
+Saving Posted Data to the Model:
+
+A form in contact.ejs posts data (name, email, zip code) to /subscribe.
+
+<!-- Add two routes: -->
+
+GET /contact to show the form.
+
+POST /subscribe to save the subscriber.
+
+In the controller, use saveSubscriber to create a new Subscriber object and save it to MongoDB.
+
+<!-- Using Promises with Mongoose: -->
+
+Mongoose supports ES6 promises to cleanly handle async database queries.
+
+You can use .then() for successful responses and .catch() for errors.
+
+To enable native promises: add mongoose.Promise = global.Promise at the top of main.js.
+
