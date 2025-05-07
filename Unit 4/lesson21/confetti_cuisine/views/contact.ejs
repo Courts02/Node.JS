@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="col-sm-6">
+    <img src="images/graph.png" alt="">
+  </div>
+  <div class="col-sm-6">
+    <div class="centered-form">
+      <h2 class="center">Create Subscriber</h2>
+      <form action="/contact" method="POST">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="zipCode">Zip Code:</label>
+          <input type="number" name="zipCode" placeholder="Enter your zip code" required>
+        </div>
+        <div class="button-container">
+          <button type="submit" class="button">Create Subscriber</button>
+        </div>
+      </form>
+      <div class="button-container">
+        <a href="/subscribers" class="button">View All Subscribers</a>
+      </div>
+    </div>
+    <p> We'll get back to you soon!</p>
+  </div>
+</div>
