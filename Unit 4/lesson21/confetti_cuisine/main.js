@@ -6,11 +6,14 @@ const app = express();
 const router = express.Router(); // Optional, but good for modular routes
 const errorController = require("./controllers/errorController");
 const homeController = require("./controllers/homeController");
+const usersController = require("./controllers/usersController");  
 const layouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const Subscriber = require("./models/subscriber");
 const subscribersController = require("./controllers/subscribersController");
 const methodOverride = require("method-override"); // Allows PUT/DELETE via forms
+const session = require("express-session");
+const flash = require("connect-flash");
 
 // --- Mongoose: Connect to MongoDB ---
 mongoose.connect("mongodb://0.0.0.0:27017/confetti_cuisine", {
@@ -27,6 +30,22 @@ db.once("open", () => {
 // --- App Configuration ---
 app.set("port", process.env.PORT || 3000); // Default port 3000 if none set
 app.set("view engine", "ejs"); // Use EJS for templates
+
+// session middleware
+app.use(session({
+  secret: "yourSecretKey", 
+  resave: false,
+  saveUninitialized: true
+}));
+
+// flash middleware
+app.use(flash());
+
+// make flash messages available in views
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+});
 
 // --- Middleware Setup ---
 app.use(express.static("public")); // Serve static files from "public" folder
@@ -54,13 +73,12 @@ app.post("/contact", subscribersController.saveSubscriber); // Save new subscrib
 // Subscriber CRUD routes
 app.get("/subscribers/:id/edit", subscribersController.edit); // Edit form
 app.put("/subscribers/:id/update", subscribersController.update, subscribersController.redirectView); // Update subscriber
-app.delete("/subscribers/:id", subscribersController.delete, subscribersController.redirectView); // Delete subscriber
+router.delete("/subscribers/:id", subscribersController.delete, subscribersController.redirectView); // Delete subscriber
+app.delete("/users/:id", usersController.delete);
 app.get("/subscribers/:id", subscribersController.show, subscribersController.showView); // Show subscriber details
 app.get("/subscribers", subscribersController.index, subscribersController.indexView); // List all subscribers
 
 // Users
-const usersController = require("./controllers/usersController");
-
 // Render user creation form
 app.get("/users/new", (req, res) => {
   res.render("users/new");
@@ -68,6 +86,7 @@ app.get("/users/new", (req, res) => {
 
 // Handle new user submission
 app.post("/users", usersController.create);
+// Go add a button to trigger API
 
 // --- Error Handling Middleware ---
 app.use(errorController.logErrors); // Log errors
