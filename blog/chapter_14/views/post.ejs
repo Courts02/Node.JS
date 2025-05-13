@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layouts/header'); -%> <!-- Include the header layout (contains meta tags, links to stylesheets, etc.) -->
+
+<body>
+
+  <%- include('layouts/navbar'); -%> <!-- Include the navbar layout (usually contains navigation menu or links) -->
+
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('<%= blogpost.image %>')"> <!-- Use the image from the blogpost object for the background -->
+    <div class="overlay"></div> <!-- Add an overlay for visual effect -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1><%= blogpost.title %></h1> <!-- Display the title of the blogpost -->
+            <h2 class="subheading"><%- blogpost.body.substring(0,100) %> ...</h2> <!-- Display the first 100 characters of the blogpost body -->
+            <span class="meta">Posted by
+              <a href="#"><%= blogpost.userid.username %></a> <!-- Display the username of the person who posted -->
+              on <%= blogpost.datePosted.toDateString() %></span> <!-- Display the formatted date the blogpost was posted -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <%- blogpost.body %> <!-- Render the full body of the blogpost as raw HTML (using <%- to avoid escaping HTML) -->
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr> <!-- Horizontal line to separate sections -->
+
+  <%- include('layouts/footer'); -%> <!-- Include the footer layout (contains copyright info, social media links, etc.) -->
+
+  <%- include('layouts/scripts'); -%> <!-- Include JavaScript files (for interactivity, form validation, etc.) -->
+
+</body>
+
+</html>

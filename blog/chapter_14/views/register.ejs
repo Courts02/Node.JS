@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('layouts/header'); -%> <!-- Include the header layout (contains meta tags, links to stylesheets, etc.) -->
+
+    <body>
+
+        <%- include('layouts/navbar'); -%> <!-- Include the navbar layout (usually contains navigation menu or links) -->
+
+        <!-- Page Header -->
+        <header class="masthead" style="background-image: url('/img/helloworldsignup.jpeg')"> <!-- Use a specific image for the background of the signup page -->
+            <div class="overlay"></div> <!-- Add an overlay for visual effect -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <div class="page-heading">
+                            <h1>Register a new account</h1> <!-- Main heading for the signup page -->
+                            <span class="subheading">Create your own User.</span> <!-- Subheading with instructions -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <!-- Display validation errors, if any -->
+                    <% if(errors != null && errors.length > 0){ %>
+                        <ul class="list-group"></ul> <!-- Create an unordered list to display error messages -->
+                        <% for (var i = 0; i < errors.length; i++) { %>
+                        <li class="list-group-item list-group-item-danger"><%= errors[i] %></li> <!-- Loop through the errors and display each one -->
+                        <% } %>
+                        </ul>
+                    <% } %>
+                    <!-- User registration form -->
+                    <form action="/users/register" method="POST" enctype="multipart/form-data">
+                        <!-- Input for User Name -->
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>User Name</label>
+                                <input type="text" class="form-control" placeholder="User Name" id="username" name="username" value="<%= username %>"> <!-- Pre-fill the value if there were any previous input values -->
+                            </div>
+                        </div>
+                        <!-- Input for Password -->
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="Password" id="password" name="password" value="<%= password %>"> <!-- Pre-fill the value if there were any previous input values -->
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div> <!-- Placeholder for success messages -->
+                        <!-- Submit button to register -->
+                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <hr> <!-- Horizontal line to separate sections -->
+
+        <%- include('layouts/footer'); -%> <!-- Include the footer layout (contains copyright info, social media links, etc.) -->
+
+        <%- include('layouts/scripts'); -%> <!-- Include JavaScript files (for interactivity, form validation, etc.) -->
+
+    </body>
+
+</html>

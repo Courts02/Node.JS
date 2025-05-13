@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Include the header layout (usually contains meta tags, links to stylesheets, and opening <head> tag) -->
+  <%- include('layouts/header'); -%>
+
+  <body>
+  
+    <!-- Include the navbar layout (contains the navigation menu or links) -->
+    <%- include('layouts/navbar'); -%>
+  
+  <!-- Page Header Section -->
+  <header class="masthead" style="background-image: url('/img/download (11).jpeg')">
+    <!-- Overlay for the background image, improving text readability -->
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <!-- Main heading for the "Create New Post" page -->
+            <h1>Create New Post</h1>
+            <!-- Subheading with a call-to-action or theme description -->
+            <span class="subheading">Have questions? I have answers.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Section -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <!-- Form to create a new post -->
+        <form action="/posts/store" method="POST" enctype="multipart/form-data">
+          <!-- Hidden field for userId (to associate the post with the current user) -->
+          <input type="hidden" name="userid" value="<%- userId %>">
+          
+          <!-- Title input field -->
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Title</label>
+              <input type="text" class="form-control" placeholder="Title" id="title" name="title">
+            </div>
+          </div>
+          
+          <!-- Body input field with Summernote editor (for rich text) -->
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Body</label>
+              <!-- Textarea for the post content -->
+              <textarea id="body" name="body" class="form-control"></textarea>
+
+              <!-- Initialize Summernote for rich text editing (with placeholder text) -->
+              <script>
+                $('#body').summernote({
+                  placeholder: 'Hello bootstrap 4',
+                  tabsize: 2,
+                  height: 200
+                });
+              </script>
+            </div>
+          </div>
+
+          <!-- Image upload input field -->
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Image</label>
+              <input type="file" class="form-control" id="image" name="image">
+            </div>
+          </div>
+
+          <!-- Submit button to submit the form -->
+          <br>
+          <div id="success"></div>
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Horizontal line separator -->
+  <hr>
+
+  <!-- Include the footer layout (typically contains copyright information, social media links, etc.) -->
+  <%- include('layouts/footer'); -%>
+
+  <!-- Include JavaScript files (e.g., for interactivity, form validation, etc.) -->
+  <%- include('layouts/scripts'); -%>
+
+</body>
+
+</html>
